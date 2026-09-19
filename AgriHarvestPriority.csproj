@@ -101,17 +101,20 @@
   </PropertyGroup>
   <!-- 构建后自动复制到游戏 Mod 文件夹 -->
   <Target Name="CopyModToGame" AfterTargets="Build">
-    <!-- 生成 mod_info.yaml -->
-    <WriteLinesToFile File="$(ModFolder)/mod_info.yaml" Overwrite="true" Encoding="UTF-8" Lines="minimumSupportedBuild: $(MinimumSupportedBuild); APIVersion: $(APIVersion); supportedContent: $(SupportedContent); version: $(ModVersion); staticID: $(ModStaticID)" />
+    <PropertyGroup>
+      <ProjectModFolder>$(ModFolder)\$(AssemblyName)</ProjectModFolder>
+    </PropertyGroup>
     <!-- 确保目标目录存在 -->
-    <MakeDir Directories="$(ModFolder)" Condition="!Exists('$(ModFolder)')" />
+    <MakeDir Directories="$(ProjectModFolder)" Condition="!Exists('$(ProjectModFolder)')" />
+    <!-- 生成 mod_info.yaml -->
+    <WriteLinesToFile File="$(ProjectModFolder)\mod_info.yaml" Overwrite="true" Encoding="UTF-8" Lines="minimumSupportedBuild: $(MinimumSupportedBuild);APIVersion: $(APIVersion);supportedContent: $(SupportedContent);version: $(ModVersion);staticID: $(ModStaticID)" />
     <!-- 复制 DLL -->
-    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(ModFolder)" />
+    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(ProjectModFolder)" />
     <!-- 复制 .pdb（调试用） -->
-    <Copy SourceFiles="$(OutputPath)$(AssemblyName).pdb" DestinationFolder="$(ModFolder)" Condition="Exists('$(OutputPath)$(AssemblyName).pdb')" />
+    <Copy SourceFiles="$(OutputPath)$(AssemblyName).pdb" DestinationFolder="$(ProjectModFolder)" Condition="Exists('$(OutputPath)$(AssemblyName).pdb')" />
     <!-- 复制 翻译文件 -->
-    <Copy SourceFiles="@(TranslationFiles)" DestinationFolder="$(ModFolder)\translations\" />
+    <Copy SourceFiles="@(TranslationFiles)" DestinationFolder="$(ProjectModFolder)\translations\" />
     <!-- 复制预览图（如果有） -->
-    <Copy SourceFiles="ModAssets/assets/preview.png" DestinationFolder="$(ModFolder)" />
+    <Copy SourceFiles="ModAssets/assets/preview.png" DestinationFolder="$(ProjectModFolder)" Condition="Exists('ModAssets/assets/preview.png')" />
   </Target>
 </Project>
