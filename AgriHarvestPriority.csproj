@@ -83,11 +83,7 @@
     <!-- 如果有 STRINGS 类 -->
     <Compile Include="STRINGS.cs" />
   </ItemGroup>
-  <!-- 可选的 NuGet 包（PLib 不是必须的，如果你只需要 Harmony，可以不添加） -->
   <ItemGroup>
-    <PackageReference Include="PLib">
-      <Version>4.25.0</Version>
-    </PackageReference>
     <EmbeddedResource Include="ModAssets\assets\uproot_icon.dds" />
     <EmbeddedResource Include="ModAssets\assets\not_uproot_icon.dds" />
     <TranslationFiles Include="ModAssets\translations\*.po" />
@@ -111,8 +107,6 @@
     <MakeDir Directories="$(ModFolder)" Condition="!Exists('$(ModFolder)')" />
     <!-- 复制 DLL -->
     <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(ModFolder)" />
-    <!-- 复制 PLib（如果使用了） -->
-    <Copy SourceFiles="$(OutputPath)PLib.dll" DestinationFolder="$(ModFolder)" Condition="Exists('$(OutputPath)PLib.dll')" />
     <!-- 复制 .pdb（调试用） -->
     <Copy SourceFiles="$(OutputPath)$(AssemblyName).pdb" DestinationFolder="$(ModFolder)" Condition="Exists('$(OutputPath)$(AssemblyName).pdb')" />
     <!-- 复制 翻译文件 -->
