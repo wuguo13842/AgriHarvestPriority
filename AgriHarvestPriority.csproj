@@ -100,6 +100,7 @@
     <ModVersion>1.0.0.0</ModVersion>
   </PropertyGroup>
   <!-- 构建后自动复制到游戏 Mod 文件夹 -->
+  <!-- 构建后自动复制到游戏 Mod 文件夹 -->
   <Target Name="CopyModToGame" AfterTargets="Build">
     <PropertyGroup>
       <ProjectModFolder>$(ModFolder)\$(AssemblyName)</ProjectModFolder>
@@ -107,7 +108,9 @@
     <!-- 确保目标目录存在 -->
     <MakeDir Directories="$(ProjectModFolder)" Condition="!Exists('$(ProjectModFolder)')" />
     <!-- 生成 mod_info.yaml -->
-    <WriteLinesToFile File="$(ProjectModFolder)\mod_info.yaml" Overwrite="true" Encoding="UTF-8" Lines="minimumSupportedBuild: $(MinimumSupportedBuild);APIVersion: $(APIVersion);supportedContent: $(SupportedContent);version: $(ModVersion);staticID: $(ModStaticID)" />
+    <WriteLinesToFile File="$(ProjectModFolder)\mod_info.yaml" Overwrite="true" Encoding="UTF-8" Lines="minimumSupportedBuild: $(MinimumSupportedBuild);APIVersion: $(APIVersion);supportedContent: $(SupportedContent);version: &quot;$(ModVersion)&quot;" />
+    <!-- 生成 mod.yaml -->
+    <WriteLinesToFile File="$(ProjectModFolder)\mod.yaml" Overwrite="true" Encoding="UTF-8" Lines="title: &quot;$(ModTitle)&quot;;description: &quot;$(ModDescription)&quot;;staticID: $(ModStaticID)" />
     <!-- 复制 DLL -->
     <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(ProjectModFolder)" />
     <!-- 复制 .pdb（调试用） -->
