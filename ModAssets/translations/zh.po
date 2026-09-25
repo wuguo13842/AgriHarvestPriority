@@ -34,3 +34,11 @@ msgstr "农业"
 msgctxt "AgriHarvestPriority.STRINGS.UI.TOOLS.FILTERLAYERS.AGRICULTURE.TOOLTIP"
 msgid "Show only agriculture buildings"
 msgstr "仅显示农业建筑"
+
+msgctxt "AgriHarvestPriority.STRINGS.UI.TOOLS.FILTERLAYERS.TRAVELTUBE.NAME"
+msgid "Transit Tube"
+msgstr "运载管道"
+
+msgctxt "AgriHarvestPriority.STRINGS.UI.TOOLS.FILTERLAYERS.TRAVELTUBE.TOOLTIP"
+msgid "Mark transit tubes"
+msgstr "标记运载管道"

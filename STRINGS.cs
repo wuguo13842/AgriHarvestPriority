@@ -44,6 +44,12 @@
 						// public static LocString NAME = "Agriculture";
 						// public static LocString TOOLTIP = "Show only agriculture buildings";
 					// }
+					
+					public static class TRAVELTUBE
+					{
+						public static LocString NAME = "Transit Tube";
+						public static LocString TOOLTIP = "Mark transit tubes";
+					}
 				}
             }
         }

@@ -70,6 +70,7 @@
   </ItemGroup>
   <!-- 你的源码文件（根据需要增减） -->
   <ItemGroup>
+    <Compile Include="Patches\DeconstructToolTravelTubePatch.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Patches\DecorativePlantIconPatch.cs" />
     <Compile Include="Patches\DecorativePlantOverlayPatch.cs" />
